@@ -31,12 +31,9 @@ app.post('/api/cars',(req,res)=>{
     console.log(name,brand);
     res.send('Car added successfully');
 });
-
+ 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/car', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-.then(() => console.log("Connected to MongoDB!"))
-.catch(err => console.error("MongoDB connection error:", err));
+mongoose.connect('mongodb://localhost:27017/Car')
+.then(() => {console.log("Connected to MongoDB!")})
+.catch(err => {console.error("MongoDB connection error:", err)});
