@@ -7,17 +7,14 @@ require('dotenv').config();
  * mongoose v7 – the defaults are already appropriate, so we
  * simply await the connection and handle errors with try/catch.
  */
-async function connectDB() {
-    try {
-        await mongoose.connect(process.env.DATABASE_URL);
+const dbConnect=() => {
+    mongoose.connect(process.env.DATABASE_URL)
+    .then(() => {
         console.log('Connected to MongoDB');
-    } catch (err) {
+    })
+    .catch((err) => {
         console.error('Error connecting to MongoDB:', err);
-        // exit the process so the caller can restart if necessary
-        process.exit(1);
-    }
+        process.exit(1); // Exit the process with an error code
+    });
 }
-
-module.exports = connectDB;
-
- 
+module.exports = dbConnect;

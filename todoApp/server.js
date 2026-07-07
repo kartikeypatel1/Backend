@@ -18,5 +18,5 @@ const connectDB=require('./config/database');
 connectDB();
 
 app.get('/',(req,res)=>{    
-    res.send(`<h1>Welcome to the Todo API</h1>`);
+    res.send(`<h1>Welcome to the Todo</h1>`);
 });
