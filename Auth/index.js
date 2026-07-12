@@ -12,10 +12,10 @@ require("./config/database").connect();
 const user=require('./routes/user');
 app.use("/api/v1",user);
 
+app.get('/',(req,res)=>{
+    res.send('<h1>hallo kartikey</h1>');
+})
 
 app.listen(PORT,()=>{
     console.log(`Server is running on http://localhost:${PORT}`);
-})
-app.get('/',(req,res)=>{
-    res.send('<h1>hallo kartikey</h1>');
 })
