@@ -1,6 +1,9 @@
 const bcrypt=require('bcrypt');
 const mongoose=require('mongoose');
 const User=require('../models/user');
+const user = require('../models/user');
+const jwt=require('jsonwebtoken');
+
 
 //signup controller
 
@@ -56,18 +59,39 @@ exports.login=async(req,res)=>{
         }
 
         //check if user exists
-        const existingUser=await User.findOne({email});
+        let existingUser=await User.findOne({email});
         if(!existingUser){
             return res.status(400).json({message:"User does not exist"});
         }
 
         //compare the password
-        const isPasswordValid=await bcrypt.compare(password,existingUser.password);
-        if(!isPasswordValid){
-            return res.status(400).json({message:"Invalid password"});
+        const payload={
+            email:existingUser.email,
+            id:existingUser._id,
+            role:existingUser.role,
+        }
+        if(await bcrypt.compare(password,existingUser.password)){
+            let token=jwt.sign(payload,
+                process.env.JWT_SECRET,
+                {
+                    expriresIn:"2h",
+                });
+            existingUser=existingUser.toObject();
+            existingUser.token=token;
+            existingUser.password=undefined;
+            const options={
+                expires: new Date(Date.now()+3*24*60*60*1000),
+                httpOnly:true, 
+            }
+            res.cookie("token",token,options).status(200).json({
+                success:true,
+                token,
+                user,
+                message:"user logged in successfully",
+            });
+
         }
         
-        res.status(200).json({message:"Login successful",user:existingUser});
     }
     catch(error){
     console.error("Login Error:", error);
