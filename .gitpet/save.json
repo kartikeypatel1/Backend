@@ -2,34 +2,33 @@
   "pet": {
     "name": "Buddy",
     "type": "dog",
-    "hp": 55,
-    "xp": 10,
-    "level": 1,
-    "mood": "SLEEPING",
+    "hp": 0,
+    "xp": 140,
+    "level": 2,
+    "mood": "SICK",
     "daysTogther": 0,
-    "feedCount": 0,
+    "feedCount": 7,
     "playCount": 0,
-    "scanCount": 1,
+    "scanCount": 9,
     "createdAt": "2026-07-11T15:38:08.358Z",
-    "lastActive": "2026-07-11T20:23:17.791Z"
+    "lastActive": "2026-08-03T20:13:43.510Z"
   },
   "git": {
     "commitsByDay": {
-      "2026-07-09": 1,
-      "2026-07-07": 1,
-      "2026-04-07": 1,
-      "2026-03-06": 1,
-      "2026-03-04": 1,
-      "2026-03-03": 1
+      "2026-07-08": 1,
+      "2024-12-25": 1
     },
     "streak": 0,
-    "totalCommits": 6,
-    "lastCommit": "2026-07-09",
-    "health": 55
+    "totalCommits": 2,
+    "lastCommit": "2026-07-08",
+    "health": 0
   },
   "focus": {
     "totalSessions": 0,
     "totalMinutes": 0
   },
-  "achievements": []
+  "achievements": [
+    "first_feed",
+    "level_2"
+  ]
 }
